@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Club Mentalite — Jóvenes que construyen</title>
+  <meta name="description" content="Club Mentalite es una comunidad gratuita para jóvenes que están construyendo proyectos, aprendiendo habilidades y conectando con otras personas que también quieren hacer cosas.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #080808;
+      --white: #f5f5f0;
+      --gray: #a0a0a0;
+      --line: #242424;
+      --purple: #8b5cf6;
+      --blue: #4f8cff;
+      --green: #4ade80;
+      --orange: #ff8a3d;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAV */
+
+    nav {
+      width: 100%;
+      padding: 24px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+      background: #111;
+    }
+
+    .logo-name {
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 6% 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,.16), transparent 68%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .glow.one {
+      top: -250px;
+      left: -180px;
+    }
+
+    .glow.two {
+      bottom: -300px;
+      right: -200px;
+      background: radial-gradient(circle, rgba(79,140,255,.12), transparent 68%);
+    }
+
+    .hero-content {
+      max-width: 950px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #303030;
+      border-radius: 100px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #bbb;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(74,222,128,.7);
+    }
+
+    h1 {
+      font-size: clamp(58px, 10vw, 125px);
+      line-height: .88;
+      letter-spacing: -6px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #fff, #bcbcbc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      margin: 0 auto 38px;
+      color: var(--gray);
+      font-size: clamp(16px, 2vw, 19px);
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      color: #080808;
+      padding: 16px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      background: #fff;
+    }
+
+    .arrow {
+      font-size: 18px;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 110px 6%;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-inner {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: #777;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: .95;
+      letter-spacing: -3px;
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .section-text {
+      color: var(--gray);
+      max-width: 650px;
+      font-size: 17px;
+    }
+
+    /* FEATURES */
+
+    .features {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .feature {
+      padding: 34px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      min-height: 220px;
+      transition: background .25s ease;
+    }
+
+    .feature:hover {
+      background: #0e0e0e;
+    }
+
+    .feature-number {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 45px;
+    }
+
+    .feature h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #888;
+      font-size: 15px;
+      max-width: 420px;
+    }
+
+    .purple {
+      color: var(--purple);
+    }
+
+    .blue {
+      color: var(--blue);
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .orange {
+      color: var(--orange);
+    }
+
+    /* SELECTIVE */
+
+    .selective {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .statement {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -2px;
+      font-weight: 800;
+    }
+
+    .criteria {
+      border-left: 1px solid #333;
+      padding-left: 35px;
+    }
+
+    .criteria-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      color: #aaa;
+    }
+
+    .criteria-item strong {
+      color: white;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* CTA */
+
+    .final {
+      text-align: center;
+      padding: 150px 6%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final h2 {
+      font-size: clamp(50px, 9vw, 110px);
+      line-height: .88;
+      letter-spacing: -5px;
+      text-transform: uppercase;
+      margin-bottom: 35px;
+    }
+
+    .final p {
+      color: #888;
+      max-width: 520px;
+      margin: 0 auto 35px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 6%;
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 20px 5%;
+      }
+
+      .logo-name {
+        display: none;
+      }
+
+      .nav-link {
+        font-size: 11px;
+      }
+
+      .hero {
+        min-height: 92vh;
+        padding: 120px 6% 70px;
+      }
+
+      h1 {
+        font-size: clamp(55px, 17vw, 90px);
+        letter-spacing: -4px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .feature {
+        min-height: 190px;
+      }
+
+      .selective {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .criteria {
+        padding-left: 20px;
+      }
+
+      .final {
+        padding: 110px 6%;
+      }
+
+      .final h2 {
+        letter-spacing: -3px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-mark">CM</div>
+      <div class="logo-name">Club Mentalite</div>
+    </a>
+
+    <a href="#que-es" class="nav-link">CONOCER MENTALITE ↓</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="glow one"></div>
+      <div class="glow two"></div>
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="dot"></span>
+          COMUNIDAD GRATUITA · 14–18 AÑOS
+        </div>
+
+        <h1>
+          JÓVENES<br>
+          <span class="gradient-text">QUE CONSTRUYEN.</span>
+        </h1>
+
+        <p class="hero-description">
+          Una comunidad para jóvenes que están creando proyectos,
+          aprendiendo habilidades y buscando a otras personas
+          con las mismas ganas de hacer cosas.
+        </p>
+
+        <!-- MÁS ADELANTE CAMBIAREMOS # POR EL ENLACE DEL FORMULARIO -->
+        <a href="#" class="cta">
+          REALIZAR FORMULARIO DE ACCESO
+          <span class="arrow">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- QUÉ ES -->
+    <section id="que-es">
+
+      <div class="section-inner">
+
+        <div class="section-label">01 / QUÉ ES MENTALITE</div>
+
+        <h2 class="section-title">
+          No necesitas hacerlo todo solo.
+        </h2>
+
+        <p class="section-text">
+          Club Mentalite reúne a jóvenes que quieren construir,
+          aprender y avanzar juntos. Un lugar para encontrar
+          personas, conocimiento y feedback mientras conviertes
+          tus ideas en proyectos reales.
+        </p>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-number purple">01</div>
+            <h3>Aprende.</h3>
+            <p>
+              Recursos y conocimiento sobre creación de contenido,
+              IA, marketing, ventas, producto y mucho más.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-number blue">02</div>
+            <h3>Conecta.</h3>
+            <p>
+              Encuentra jóvenes con habilidades, intereses y
+              proyectos que puedan encajar contigo.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-number green">03</div>
+            <h3>Comparte.</h3>
+            <p>
+              Enseña lo que estás haciendo, recibe feedback
+              y aprende también de los proyectos de otros.
+            </p>
+          </div>
+
+          <div class="feature">
+            <div class="feature-number orange">04</div>
+            <h3>Construye.</h3>
+            <p>
+              Deja de acumular ideas y empieza a convertirlas
+              en algo real.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SELECTIVO -->
+    <section>
+
+      <div class="section-inner selective">
+
+        <div>
+          <div class="section-label">02 / ACCESO</div>
+
+          <div class="statement">
+            Gratis.<br>
+            Pero no para cualquiera.
+          </div>
+        </div>
+
+        <div class="criteria">
+
+          <div class="criteria-item">
+            <strong>Ganas de construir.</strong>
+            No necesitas experiencia previa.
+          </div>
+
+          <div class="criteria-item">
+            <strong>Curiosidad.</strong>
+            Queremos gente que tenga ganas de aprender.
+          </div>
+
+          <div class="criteria-item">
+            <strong>Ambición.</strong>
+            Personas que quieran hacer algo con sus ideas.
+          </div>
+
+          <div class="criteria-item">
+            <strong>Respeto.</strong>
+            Construir juntos significa ayudarnos entre todos.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FILOSOFÍA -->
+    <section>
+
+      <div class="section-inner">
+
+        <div class="section-label">03 / NUESTRA IDEA</div>
+
+        <h2 class="section-title">
+          No construyas solo.
+        </h2>
+
+        <p class="section-text">
+          Puedes aprender por tu cuenta.
+          Puedes construir por tu cuenta.
+          Pero hacerlo acompañado puede cambiarlo todo.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final">
+
+      <div class="glow two"></div>
+
+      <div class="section-inner">
+
+        <h2>
+          ¿Estás<br>
+          construyendo algo?
+        </h2>
+
+        <p>
+          Cuéntanos quién eres, qué estás haciendo
+          y qué buscas. Nosotros nos encargamos del resto.
+        </p>
+
+        <!-- MÁS ADELANTE CAMBIAREMOS # POR EL ENLACE DEL FORMULARIO -->
+        <a href="#" class="cta">
+          SOLICITAR ACCESO
+          <span class="arrow">↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <div>© 2026 CLUB MENTALITE</div>
+    <div>JÓVENES QUE CONSTRUYEN.</div>
+  </footer>
+
+</body>
+</html>
